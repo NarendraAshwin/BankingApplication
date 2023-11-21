@@ -2,28 +2,30 @@ package com.bankapplication.dto;
 
 import java.util.List;
 
-import org.apache.catalina.User;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import lombok.Getter;
-import lombok.Setter;
 @Entity
 @Component
 
 public class Account 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int accountId;
 	private String accountName;
 	private double balance;
 	private String password;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 	private AccountType type;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Transaction> transaction;
 	public int getAccountId() {
 		return accountId;

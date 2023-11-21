@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.bankapplication.dto.Manager;
 import com.bankapplication.repo.ManagerRepo;
-
+@Repository
 public class ManagerDao 
 {
 	@Autowired

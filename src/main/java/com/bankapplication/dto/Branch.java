@@ -2,7 +2,6 @@ package com.bankapplication.dto;
 
 import java.util.List;
 
-import org.apache.catalina.User;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.CascadeType;
@@ -10,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -23,7 +23,7 @@ public class Branch
 	private Bank bank;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<User> user;
 	@OneToOne
 	private Manager manager;

@@ -16,7 +16,7 @@ public class Transaction
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int transactionId;
 	private double amount;
-	private Account toAccount;
+	private int toAccount;
 	private Date date;
 	private TransactionType type;
 	private TransactionStatus status;
@@ -32,10 +32,10 @@ public class Transaction
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public Account getToAccount() {
+	public int getToAccount() {
 		return toAccount;
 	}
-	public void setToAccount(Account toAccount) {
+	public void setToAccount(int toAccount) {
 		this.toAccount = toAccount;
 	}
 	public Date getDate() {
