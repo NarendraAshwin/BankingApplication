@@ -26,6 +26,7 @@ public class ManagerService
 		Manager m = dao.saveManager(manager);
 		branch.setManager(m);
 		m.setBranch(branch);
+		dao.updateManager(m.getManagerId(), m);
 		ResponseStructure<Manager> res = new ResponseStructure<>();
 		res.setData(m);
 		res.setMsg("Manager has been saved successfully");
