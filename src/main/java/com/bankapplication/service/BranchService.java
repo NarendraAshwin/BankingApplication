@@ -21,15 +21,21 @@ public class BranchService
 	@Autowired
 	BankDao bankDao;
 	
-	
-	public ResponseEntity<ResponseStructure<Branch>> saveBranch(Branch branch)
+	public ResponseEntity<ResponseStructure<Branch>> saveBranch(Branch branch,int id)
 	{
 		ResponseStructure<Branch> res= new ResponseStructure<>();
-		res.setData(dao.saveBranch(branch));
-		res.setMsg("Branch has been Saved Successfully ");
+		Bank exBank = bankDao.findBank(id);
+		Branch savedBranch = dao.saveBranch(branch);
+		exBank.getBranch().add(savedBranch);
+		savedBranch.setBank(exBank);
+		dao.updateBranch(savedBranch.getBranchId(),savedBranch);
+		res.setData(savedBranch);
+		res.setMsg("Branch has been added successfully");
 		res.setStatus(HttpStatus.CREATED.value());
-		return new ResponseEntity<ResponseStructure<Branch>>(res, HttpStatus.CREATED);
+		
+		return new ResponseEntity<ResponseStructure<Branch>>(res,HttpStatus.CREATED);
 	}
+	
 	public ResponseEntity<ResponseStructure<Branch>> findBranch(int branchId){
 		if(findBranch(branchId)!=null) {
 			ResponseStructure<Branch> res= new ResponseStructure<>();

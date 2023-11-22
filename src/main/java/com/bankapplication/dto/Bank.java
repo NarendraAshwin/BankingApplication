@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +15,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 @Entity
 @Component
-
 public class Bank 
 {
 	@Id
@@ -23,6 +24,7 @@ public class Bank
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	@OneToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Branch> branch;
 	public int getBankId() {
 		return bankId;

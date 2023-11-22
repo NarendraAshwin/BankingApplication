@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class Branch
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<User> user;
 	@OneToOne
+	@JsonIgnore
 	private Manager manager;
 	private String ifscCode;
 	public int getBranchId() {
