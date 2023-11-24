@@ -2,7 +2,9 @@ package com.bankapplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,5 +25,14 @@ public class ManagerController
 	public ResponseEntity<ResponseStructure<Manager>> saveManager(@RequestBody Manager m, @RequestParam int id){
 		return ser.saveManager(m, id);
 		
+	}
+	@DeleteMapping
+	public ResponseEntity<ResponseStructure<Manager>> deleteManager(@RequestParam int id)
+	{
+		return ser.deleteManager(id);
+	}
+	@PutMapping
+	public ResponseEntity<ResponseStructure<Manager>> updateManager(@RequestBody Manager m,@RequestParam int id){
+		return ser.updateManager(id,m);
 	}
 }
