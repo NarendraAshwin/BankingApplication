@@ -53,7 +53,15 @@ public class ManagerService
 	public ResponseEntity<ResponseStructure<Manager>> deleteManager(int id)
 	{
 		ResponseStructure<Manager> res= new ResponseStructure<>();
-		if(dao.findManager(id)!=null) {
+		if(dao.findManager(id)!=null) 
+		{
+			Manager exMan = dao.findManager(id);
+			Branch branch = exMan.getBranch();
+			
+			exMan.setBranch(null);
+			branch.setManager(null);
+			dao.updateManager(id, exMan);
+			
 			res.setData(dao.deleteManager(id));
 			res.setMsg("Manager with the ID" +id+"is Deleted successfully");
 			res.setStatus(HttpStatus.CREATED.value());
